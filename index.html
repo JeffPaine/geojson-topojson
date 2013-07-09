@@ -41,9 +41,11 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>
-            // On click, convert the GeoJSON to TopoJSON
             $('#convert-button').click(function() {
-                convertGeojsonToTopojson($('#geojson').val())
+              // First, clear the contents of our TopoJSON textarea
+              $('#topojson').val('');
+              // Then call our conversion function
+              convertGeojsonToTopojson($('#geojson').val())
             });
 
             // Convert the given GeoJSON to TopoJSON
