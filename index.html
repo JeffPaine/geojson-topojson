@@ -26,6 +26,7 @@
         </div>
 
         <div class="container">
+
             <div class="row">
                 <div class="span6">
                     <h2>GeoJSON</h2>
@@ -42,10 +43,17 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>
             $('#convert-button').click(function() {
-              // First, clear the contents of our TopoJSON textarea
+              var geojson = $('#geojson').val()
+              // Clear the contents of our TopoJSON textarea
               $('#topojson').val('');
-              // Then call our conversion function
-              convertGeojsonToTopojson($('#geojson').val())
+
+              if (geojson === '') {
+                // Ignore empty submissions
+                console.log("GeoJSON field can't be empty.");
+              } else {
+                // Call our conversion function
+                convertGeojsonToTopojson(geojson)
+              }
             });
 
             // Convert the given GeoJSON to TopoJSON
@@ -56,8 +64,11 @@
                   data: geojson,
                   contentType: "application/json; charset=utf-8",
                   dataType: "json",
-                  success: function(data){
+                  success: function(data) {
                     $('#topojson').val(JSON.stringify(data, null, 4));
+                  },
+                  error: function() {
+                    console.log("There was a conversion error.");
                   }
                 })
             };
