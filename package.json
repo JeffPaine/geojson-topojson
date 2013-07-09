@@ -5,5 +5,9 @@
   "dependencies": {
     "express": "3.x",
     "topojson": "1.2.2"
+  },
+  "engines": {
+    "node": "0.8.19",
+    "npm": "1.2.10"
   }
 }
