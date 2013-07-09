@@ -1,0 +1,9 @@
+{
+  "name": "geojson-to-topojson",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "topojson": "1.2.2"
+  }
+}
