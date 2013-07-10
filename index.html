@@ -27,6 +27,9 @@
 
         <div class="container">
 
+          <div class="row" id="error">
+          </div>
+
             <div class="row">
                 <div class="span6">
                     <h2>GeoJSON</h2>
@@ -38,10 +41,13 @@
                     <textarea class="span6" rows="20" id="topojson" readonly></textarea>
                 </div>
             </div>
+
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap-alert.js"></script>
         <script>
+            // Click handler for our convert button
             $('#convert-button').click(function() {
               var geojson = $('#geojson').val()
               // Clear the contents of our TopoJSON textarea
@@ -49,9 +55,7 @@
 
               if (geojson === '') {
                 // Ignore empty submissions
-                console.log("GeoJSON field can't be empty.");
               } else {
-                // Call our conversion function
                 convertGeojsonToTopojson(geojson)
               }
             });
@@ -68,9 +72,20 @@
                     $('#topojson').val(JSON.stringify(data, null, 4));
                   },
                   error: function() {
-                    console.log("There was a conversion error.");
+                    displayError('There was an unknown error converting your GeoJSON to TopoJSON. Sorry.');
                   }
                 })
+            };
+
+            // Make our error alert box closable
+            $(".alert").alert()
+
+            // Display errors to the user
+            var displayError = function(errorText) {
+              var html = '<div class="span12 alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><b>Error: </b> '
+              html += errorText
+              html += '</div>'
+              $('#error').html(html);
             };
         </script>
     </body>
