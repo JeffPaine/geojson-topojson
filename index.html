@@ -87,13 +87,13 @@
             };
 
             // Make our error alert box closable
-            $(".alert").alert()
+            $(".alert").alert();
 
             // Display errors to the user
             var displayError = function(errorText) {
-              var html = '<div class="span12 alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><b>Error: </b> '
-              html += errorText
-              html += '</div>'
+              var html = '<div class="span12 alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><b>Error: </b> ';
+              html += errorText;
+              html += '</div>';
               $('#error').html(html);
             };
         </script>
