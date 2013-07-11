@@ -36,11 +36,13 @@
                 <div class="span6">
                     <h2>GeoJSON</h2>
                     <textarea class="span6" rows="20" id="geojson"></textarea>
-                    <button class="btn btn-large btn-primary" id="convert-button" type="button">Convert to TopoJSON <i class="icon-random icon-white"></i></button>
+                    <button class="btn btn-large btn-primary" id="convert-to-topojson" type="button">Convert to TopoJSON <i class="icon-arrow-right icon-white"></i></button>
                 </div>
                 <div class="span6">
                     <h2>TopoJSON</h2>
-                    <textarea class="span6" rows="20" id="topojson" readonly></textarea>
+                    <textarea class="span6" rows="20" id="topojson"></textarea>
+                    <button class="btn btn-large btn-primary" id="convert-to-geojson" type="button"><i class="icon-arrow-left icon-white"></i> Convert to GeoJSON</button>
+                    <br><span>* Converting from TopoJSON to GeoJSON requires your geo object to be under <code>&lt;objectName&gt;.objects.collection</code></span>
                 </div>
             </div>
 
@@ -55,17 +57,31 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap-alert.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
         <script>
-            // Click handler for our convert button
-            $('#convert-button').click(function() {
-              var geojson = $('#geojson').val()
+            // Click handler for our convert to TopoJSON button
+            $('#convert-to-topojson').click(function() {
+              var geojsonString = $('#geojson').val()
               // Clear the contents of our TopoJSON textarea
               $('#topojson').val('');
 
-              if (geojson === '') {
+              if (geojsonString === '') {
                 // Ignore empty submissions
               } else {
-                convertGeojsonToTopojson(geojson)
+                convertGeojsonToTopojson(geojsonString);
+              }
+            });
+
+            // Click handler for our convert to GeoJSON button
+            $('#convert-to-geojson').click(function() {
+              var topojsonString = $('#topojson').val()
+              // Clear the contents of our GeoJSON textarea
+              $('#geojson').val('');
+
+              if (topojsonString === '') {
+                // Ignore empty submissions
+              } else {
+                convertTopojsonToGeojson(topojsonString);
               }
             });
 
@@ -83,7 +99,23 @@
                   error: function() {
                     displayError('There was an unknown error converting your GeoJSON to TopoJSON. Sorry.');
                   }
-                })
+                });
+            };
+
+            // Convert the given TopoJSON to GeoJSON
+            var convertTopojsonToGeojson = function(topojsonString) {
+              try {
+                var topojsonObject = JSON.parse(topojsonString);
+                console.log(topojsonObject);
+                var geojson = topojson.feature(topojsonObject, topojsonObject.objects.collection);
+                console.log(geojson);
+                $('#geojson').val(JSON.stringify(geojson, null, 4));
+              }
+
+              catch (error) {
+                displayError('There was an unknown error converting your TopoJSON to GeoJSON. Sorry.');
+                console.log(error, error.message);
+              }
             };
 
             // Make our error alert box closable
