@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "topojson": "1.2.2",
+    "topojson": "1.2.3",
     "browserify": "2.25.0",
-    "brfs": "0.0.6"
+    "brfs": "0.0.6",
+    "d3": "3.2.6"
   }
 }
