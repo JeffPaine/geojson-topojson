@@ -3,11 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "3.x",
-    "topojson": "1.2.2"
-  },
-  "engines": {
-    "node": "0.8.19",
-    "npm": "1.2.10"
+    "topojson": "1.2.2",
+    "browserify": "2.25.0",
+    "brfs": "0.0.6"
   }
 }
