@@ -100,7 +100,7 @@
             var convertTopojsonToGeojson = function(topojsonString) {
               try {
                 var parsedTopojson = JSON.parse(topojsonString);
-                var geojson = topojson.feature(parsedTopojson, topojsonObject.objects.collection);
+                var geojson = topojson.feature(parsedTopojson, parsedTopojson.objects.collection);
                 $('#geojson').val(JSON.stringify(geojson, null, 4));
               }
 
