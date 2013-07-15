@@ -58,6 +58,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap-alert.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+        <script src="lib.js"></script>
         <script>
             // Click handler for our convert to TopoJSON button
             $('#convert-to-topojson').click(function() {
@@ -72,6 +73,7 @@
               }
             });
 
+
             // Click handler for our convert to GeoJSON button
             $('#convert-to-geojson').click(function() {
               var topojsonString = $('#topojson').val()
@@ -85,30 +87,20 @@
               }
             });
 
+
             // Convert the given GeoJSON to TopoJSON
-            var convertGeojsonToTopojson = function(geojson) {
-                $.ajax({
-                  url: '/',
-                  type: "POST",
-                  data: geojson,
-                  contentType: "application/json; charset=utf-8",
-                  dataType: "json",
-                  success: function(data) {
-                    $('#topojson').val(JSON.stringify(data, null, 4));
-                  },
-                  error: function() {
-                    displayError('There was an unknown error converting your GeoJSON to TopoJSON. Sorry.');
-                  }
-                });
+            var convertGeojsonToTopojson = function(geojsonString) {
+                var parsedGeojson = JSON.parse(geojsonString)
+                var topojsonOutput = topojson.topology({collection: parsedGeojson});
+                $('#topojson').val(JSON.stringify(topojsonOutput, null, 4));
             };
+
 
             // Convert the given TopoJSON to GeoJSON
             var convertTopojsonToGeojson = function(topojsonString) {
               try {
-                var topojsonObject = JSON.parse(topojsonString);
-                console.log(topojsonObject);
-                var geojson = topojson.feature(topojsonObject, topojsonObject.objects.collection);
-                console.log(geojson);
+                var parsedTopojson = JSON.parse(topojsonString);
+                var geojson = topojson.feature(parsedTopojson, topojsonObject.objects.collection);
                 $('#geojson').val(JSON.stringify(geojson, null, 4));
               }
 
