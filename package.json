@@ -5,7 +5,6 @@
   "dependencies": {
     "topojson": "1.2.3",
     "browserify": "2.25.0",
-    "brfs": "0.0.6",
-    "d3": "3.2.6"
+    "brfs": "0.0.6"
   }
 }
