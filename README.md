@@ -4,7 +4,7 @@ A simple (perhaps dumb) web interface to quickly convert between GeoJSON and Top
 
 ## Use
 
-Available online at [www.geojson-topojson.org](http://www.geojson-topojson.org/).
+Available online at [jeffpaine.github.io/geojson-topojson/](http://jeffpaine.github.io/geojson-topojson/).
 
 ## Why
 
@@ -14,4 +14,4 @@ Users looking to convert lots of data programmatically should use the [topojson]
 
 ## Limitations
 
-Right now, converting TopoJSON to GeoJSON requires the geo object to be under `<objectName>.objects.collection`. Also, it's not recommened to convert between formats multiple times in a row as it will introduce rounding / floating-point arithmetic errors.
+Right now, converting TopoJSON to GeoJSON requires the geo object to be under `<objectName>.objects.collection`. Also, it's probably best to not convert back and forth between formats multiple times as it could introduce rounding / floating-point arithmetic errors.
