@@ -1,8 +1,8 @@
 # geojson-topojson
 
-A simple (perhaps dumb) web interface to quickly convert between GeoJSON and TopoJSON. Basically, a web interface for Mike Bostock's [topojson](https://github.com/mbostock/topojson) library.
+**Note**: FYI, there's a far nicer geojson -> topojson converter at [distillery](http://shancarter.github.io/distillery/) (although it doesn't do topojson -> geojson).
 
-**Note**: Although this was an interesting project to build, there's a far superior geojson -> topojson converter at [distillery](http://shancarter.github.io/distillery/).
+A simple (perhaps dumb) web interface to quickly convert between GeoJSON and TopoJSON. Basically, a web interface for Mike Bostock's [topojson](https://github.com/mbostock/topojson) library.
 
 ## Use
 
