@@ -16,5 +16,4 @@ Users looking to convert lots of data programmatically should use the [topojson]
 
 ## Limitations
 
- * Converting TopoJSON to GeoJSON requires the geo object to be under `<objectName>.objects.collection`.
  * Don't convert back and forth between formats multiple times as -> TopoJSON will lose precision via quantization and -> GeoJSON drops topology
