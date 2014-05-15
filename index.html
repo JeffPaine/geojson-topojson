@@ -149,7 +149,7 @@
 					case "FeatureCollection":
 						//Featurecollection already exists. We just need to add the Features from the input
 						// to the data's Features
-						data.features=data.features.concat(getFeatures(input));
+						data.features=data.features.concat(this.getFeatures(input));
 						break;
 					case "Feature":
 						// we need to create a new FeatureCollection & then concatenate the input
@@ -159,7 +159,7 @@
 								};
 						//now set the data to this new FeatureCollection
 						this.data=ob;
-						data.features=data.features.concat(getFeatures(input)); 
+						this.data.features=this.data.features.concat(this.getFeatures(input)); 
 						break
 					//For the 7 types of Geometry objects, We need to make the FeatureCollection & then concatenate
 					case "Point":		
@@ -171,10 +171,10 @@
 					case "GeometryCollection":
 						var ob={
 								"type" : "FeatureCollection",
-								"features" : getFeatures(this.data)
+								"features" : this.getFeatures(this.data)
 								};
 						this.data=ob;
-						data.features=data.features.concat(getFeatures(input));
+						this.data.features=this.data.features.concat(this.getFeatures(input));
 						break;
 					default :
 						//UnExpected data type
@@ -199,7 +199,7 @@
 					case "Polygon":		
 					case "MultiPolygon":		
 					case "GeometryCollection":
-						return makeFeaturesArray(geoJSON)
+						return this.makeFeaturesArray(geoJSON)
 					default :
 						//UnExpected Input; Return Empty Array
 						return [];
