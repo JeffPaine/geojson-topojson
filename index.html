@@ -149,7 +149,7 @@
                       case "FeatureCollection":
                           //Featurecollection already exists. We just need to add the Features from the input
                           // to the data's Features
-                          data.features = data.features.concat(this.getFeatures(input));
+                          this.data.features = this.data.features.concat(this.getFeatures(input));
                           break;
                       case "Feature":
                           // we need to create a new FeatureCollection & then concatenate the input
